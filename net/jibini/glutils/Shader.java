@@ -1,0 +1,67 @@
+package net.jibini.glutils;
+
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL20.*;
+
+public class Shader
+{
+	private int program;
+	
+	public Shader(String vertex, String fragment)
+	{
+		int vertShader = glCreateShader(GL_VERTEX_SHADER);
+		glShaderSource(vertShader, vertex);
+		glCompileShader(vertShader);
+		checkCompileStatus(vertShader);
+		
+		int fragShader = glCreateShader(GL_FRAGMENT_SHADER);
+		glShaderSource(fragShader, fragment);
+		glCompileShader(fragShader);
+		checkCompileStatus(fragShader);
+		
+		program = glCreateProgram();
+		glAttachShader(program, vertShader);
+		glAttachShader(program, fragShader);
+		glLinkProgram(program);
+		
+		glDeleteShader(vertShader);
+		glDeleteShader(fragShader);
+	}
+	
+	private void checkCompileStatus(int shader)
+	{
+		int status = glGetShaderi(shader, GL_COMPILE_STATUS);
+		
+		if (status == GL_FALSE)
+		{
+			int logLength = glGetShaderi(shader, GL_INFO_LOG_LENGTH);
+			String log = glGetShaderInfoLog(shader, logLength);
+			System.out.println("Shader error:\n" + log);
+		}
+	}
+	
+	public void bind()
+	{
+		glUseProgram(program);
+	}
+	
+	public void destroy()
+	{
+		glDeleteProgram(program);
+	}
+	
+	public int getUniform(String name)
+	{
+		return glGetUniformLocation(program, name);
+	}
+	
+	public int getAttrib(String name)
+	{
+		return glGetAttribLocation(program, name);
+	}
+	
+	public int getProgram()
+	{
+		return program;
+	}
+}
