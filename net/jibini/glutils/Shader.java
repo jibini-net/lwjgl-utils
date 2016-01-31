@@ -2,6 +2,7 @@ package net.jibini.glutils;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL20.*;
+import java.io.IOException;
 
 public class Shader
 {
@@ -40,6 +41,13 @@ public class Shader
 		}
 	}
 	
+	public void setStdUniforms(MatrixSet matrices, int sampler)
+	{
+		matrices.setUniforms(this);
+		int samplerLocation = getUniform(GLUtils.SAMPLER_UNIFORM);
+		glUniform1i(samplerLocation, sampler);
+	}
+	
 	public void bind()
 	{
 		glUseProgram(program);
@@ -63,5 +71,14 @@ public class Shader
 	public int getProgram()
 	{
 		return program;
+	}
+	
+	public static Shader createStdShader() throws IOException
+	{
+		String base = "/assets/shaders/standard";
+		String vertex = FileLoader.loadFile(base + ".vsh");
+		String fragment = FileLoader.loadFile(base + ".fsh");
+		Shader result = new Shader(vertex, fragment);
+		return result;
 	}
 }
