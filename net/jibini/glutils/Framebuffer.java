@@ -78,6 +78,11 @@ public class Framebuffer
 	{
 		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 	}
+	
+	public void release()
+	{
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	}
 
 	public void destroy()
 	{
