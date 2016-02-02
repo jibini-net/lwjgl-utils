@@ -40,11 +40,34 @@ public class Framebuffer
 		glDrawBuffers(drawBuffers);
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
+		// @formatter:off
 		float[] fboMeshData =
-		{ -1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-				1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-				1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f, -1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-				0.0f, 0.0f };
+		{ 
+			-1.0f, -1.0f, 0.0f, 
+			1.0f, 1.0f, 1.0f, 1.0f, 
+			0.0f, 0.0f, 
+
+			1.0f, -1.0f, 0.0f, 
+			1.0f, 1.0f, 1.0f, 1.0f, 
+			1.0f, 0.0f, 
+
+			1.0f, 1.0f, 0.0f, 
+			1.0f, 1.0f, 1.0f, 1.0f, 
+			1.0f, 1.0f, 
+
+			1.0f, 1.0f, 0.0f,
+			1.0f, 1.0f, 1.0f, 1.0f,
+			1.0f, 1.0f,
+
+			-1.0f, 1.0f, 0.0f, 
+			1.0f, 1.0f, 1.0f, 1.0f, 
+			0.0f, 1.0f, 
+
+			-1.0f, -1.0f, 0.0f, 
+			1.0f, 1.0f, 1.0f, 1.0f, 
+			0.0f, 0.0f 
+		};
+		// @formatter:on
 
 		FloatBuffer fboMeshBuffer = BufferUtils.createFloatBuffer(fboMeshData.length);
 		fboMesh = new MeshRenderer();
