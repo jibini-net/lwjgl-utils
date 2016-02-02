@@ -8,7 +8,7 @@ public class Texture
 {
 	private int texture;
 	private int width, height;
-	
+
 	public Texture(float[] data, int width, int height, int filter)
 	{
 		this.width = width;
@@ -25,27 +25,27 @@ public class Texture
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_FLOAT, buffer);
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
-	
+
 	public void bind()
 	{
 		glBindTexture(GL_TEXTURE_2D, texture);
 	}
-	
+
 	public void destroy()
 	{
 		glDeleteTextures(texture);
 	}
-	
+
 	public int getWidth()
 	{
 		return width;
 	}
-	
+
 	public int getHeight()
 	{
 		return height;
 	}
-	
+
 	public int getTexture()
 	{
 		return texture;
