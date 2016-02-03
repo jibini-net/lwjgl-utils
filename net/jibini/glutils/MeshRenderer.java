@@ -5,6 +5,7 @@ import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.*;
 import java.nio.FloatBuffer;
+import net.jibini.glutils.utils.GLUtils;
 
 public class MeshRenderer
 {

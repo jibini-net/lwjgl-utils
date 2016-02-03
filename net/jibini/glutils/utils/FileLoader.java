@@ -1,4 +1,4 @@
-package net.jibini.glutils;
+package net.jibini.glutils.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

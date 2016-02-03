@@ -1,6 +1,7 @@
-package net.jibini.glutils;
+package net.jibini.glutils.utils;
 
 import org.lwjgl.util.vector.Matrix4f;
+import net.jibini.glutils.Shader;
 import static org.lwjgl.opengl.GL20.*;
 import java.nio.FloatBuffer;
 import org.lwjgl.BufferUtils;

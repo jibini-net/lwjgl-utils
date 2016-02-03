@@ -3,6 +3,9 @@ package net.jibini.glutils;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL20.*;
 import java.io.IOException;
+import net.jibini.glutils.utils.FileLoader;
+import net.jibini.glutils.utils.GLUtils;
+import net.jibini.glutils.utils.MatrixSet;
 
 public class Shader
 {

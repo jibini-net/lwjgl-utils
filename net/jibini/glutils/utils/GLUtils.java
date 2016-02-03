@@ -1,4 +1,4 @@
-package net.jibini.glutils;
+package net.jibini.glutils.utils;
 
 public class GLUtils
 {
