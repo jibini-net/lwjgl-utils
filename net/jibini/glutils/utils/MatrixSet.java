@@ -1,6 +1,6 @@
 package net.jibini.glutils.utils;
 
-import static org.lwjgl.opengl.GL20.glUniformMatrix4fv;
+import static org.lwjgl.opengl.GL20.*;
 import java.nio.FloatBuffer;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.util.vector.Matrix4f;
