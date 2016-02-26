@@ -6,18 +6,38 @@ import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.*;
 import java.nio.FloatBuffer;
 
+/**
+ * Renders interleaved vertices compliantly.
+ */
 public class MeshRenderer
 {
+	/**
+	 * Stores the amount of vertices in the mesh.
+	 */
 	private int vertexCount;
+	
+	/**
+	 * Stores the vertex array object handle.
+	 */
 	private int vertexArray;
+	
+	/**
+	 * Stores the vertex buffer object handle.
+	 */
 	private int vertexBuffer;
 
+	/**
+	 * Creates vertex array and vertex buffer objects.
+	 */
 	public MeshRenderer()
 	{
 		vertexArray = glGenVertexArrays();
 		vertexBuffer = glGenBuffers();
 	}
 
+	/**
+	 * Renders the stored interleaved data.
+	 */
 	public void renderInterleaved()
 	{
 		glBindVertexArray(vertexArray);
@@ -39,6 +59,9 @@ public class MeshRenderer
 		glBindVertexArray(0);
 	}
 
+	/**
+	 * Stores interleaved data in the buffer.
+	 */
 	public void createInterleaved(FloatBuffer data, int vertices)
 	{
 		vertexCount = vertices;
@@ -47,17 +70,30 @@ public class MeshRenderer
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
+	/**
+	 * Destroys the buffer and vertex array.
+	 */
 	public void destroy()
 	{
 		glDeleteBuffers(vertexBuffer);
 		glDeleteVertexArrays(vertexArray);
 	}
 
+	/**
+	 * Gives access to the vertex array object.
+	 * 
+	 * @return Vertex array object handle.
+	 */
 	public int getVertexArray()
 	{
 		return vertexArray;
 	}
 
+	/**
+	 * Gives access to the vertex buffer object.
+	 * 
+	 * @return Vertex buffer object handle.
+	 */
 	public int getVertexBuffer()
 	{
 		return vertexBuffer;

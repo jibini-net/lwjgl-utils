@@ -7,10 +7,30 @@ import org.lwjgl.util.vector.Matrix4f;
 import net.jibini.glutils.GLUtils;
 import net.jibini.glutils.Shader;
 
+/**
+ * Utility for handling projection, view,
+ * and model matrices.
+ */
 public class MatrixSet
 {
-	public Matrix4f projection, view, model;
+	/**
+	 * Application projection matrix.
+	 */
+	public Matrix4f projection;
+	
+	/**
+	 * Application view matrix.
+	 */
+	public Matrix4f view;
+	
+	/**
+	 * Application model matrix.
+	 */
+	public Matrix4f model;
 
+	/**
+	 * Creates new matrices and sets identity.
+	 */
 	public MatrixSet()
 	{
 		projection = new Matrix4f();
@@ -19,6 +39,9 @@ public class MatrixSet
 		setIdentities();
 	}
 
+	/**
+	 * Restores matrices to the identity matrix.
+	 */
 	public void setIdentities()
 	{
 		projection.setIdentity();
@@ -26,6 +49,11 @@ public class MatrixSet
 		model.setIdentity();
 	}
 
+	/**
+	 * Sends matrices to the given shader.
+	 * 
+	 * @param shader Shader to send data to.
+	 */
 	public void setUniforms(Shader shader)
 	{
 		int projLocation = shader.getUniform(GLUtils.PROJECTION_UNIFORM);
@@ -37,6 +65,12 @@ public class MatrixSet
 		uniformMatrix4f(modeLocation, model);
 	}
 
+	/**
+	 * Used for setting a mat4 shader uniform.
+	 * 
+	 * @param location Uniform location of mat4.
+	 * @param matrix Matrix to send to uniform.
+	 */
 	public static void uniformMatrix4f(int location, Matrix4f matrix)
 	{
 		FloatBuffer matBuffer = BufferUtils.createFloatBuffer(16);

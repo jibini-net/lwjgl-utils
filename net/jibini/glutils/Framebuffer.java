@@ -8,14 +8,47 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import org.lwjgl.BufferUtils;
 
+/**
+ * Utility class for handling framebuffers.
+ */
 public class Framebuffer
 {
+	/**
+	 * Stores the framebuffer object handle.
+	 */
 	private int framebuffer;
+	
+	/**
+	 * Stores the depth renderbuffer object handle.
+	 */
 	private int depthRenderbuffer;
+	
+	/**
+	 * Stores the render texture object handle.
+	 */
 	private int renderTexture;
+	
+	/**
+	 * Mesh renderer for rendering out the framebuffer.
+	 */
 	private MeshRenderer fboMesh;
-	private int width, height;
+	
+	/**
+	 * Stores the width of the framebuffer.
+	 */
+	private int width;
+	
+	/**
+	 * Stores the height of the framebuffer.
+	 */
+	private int height;
 
+	/**
+	 * Initializes framebuffer and mesh renderer.
+	 * 
+	 * @param width Width of the framebuffer.
+	 * @param height Height of the framebuffer.
+	 */
 	public Framebuffer(int width, int height)
 	{
 		this.width = width;
@@ -74,59 +107,104 @@ public class Framebuffer
 		fboMesh.createInterleaved(fboMeshBuffer, fboMeshData.length / GLUtils.COORD_ELEMENTS);
 	}
 
+	/**
+	 * Binds the framebuffer.
+	 */
 	public void bind()
 	{
 		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 	}
 
+	/**
+	 * Releases all framebuffers (binds 0).
+	 */
 	public void release()
 	{
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
 
+	/**
+	 * Destroys framebuffer, renderbuffer, and texture.
+	 */
 	public void destroy()
 	{
+		fboMesh.destroy();
 		glDeleteFramebuffers(framebuffer);
 		glDeleteRenderbuffers(depthRenderbuffer);
 		glDeleteTextures(renderTexture);
 	}
 
+	/**
+	 * Sets the current viewport to the framebuffer size.
+	 */
 	public void viewport()
 	{
 		glViewport(0, 0, width, height);
 	}
 
+	/**
+	 * Binds the render texture.
+	 */
 	public void bindTexture()
 	{
 		glBindTexture(GL_TEXTURE_2D, renderTexture);
 	}
 
+	/**
+	 * Binds the render texture and renders out 
+	 * the framebuffer.
+	 */
 	public void renderOut()
 	{
 		bindTexture();
 		fboMesh.renderInterleaved();
 	}
 
+	/**
+	 * Decides the current width of the framebuffer.
+	 * 
+	 * @return Current width of the framebuffer.
+	 */
 	public int getWidth()
 	{
 		return width;
 	}
 
+	/**
+	 * Decides the current height of the framebuffer.
+	 * 
+	 * @return Current height of the framebuffer.
+	 */
 	public int getHeight()
 	{
 		return height;
 	}
 
+	/**
+	 * Gives access to the framebuffer object.
+	 * 
+	 * @return Framebuffer object handle.
+	 */
 	public int getFramebuffer()
 	{
 		return framebuffer;
 	}
 
+	/**
+	 * Gives access to the depth renderbuffer object.
+	 * 
+	 * @return Depth renderbuffer object handle.
+	 */
 	public int getDepthRenderbuffer()
 	{
 		return depthRenderbuffer;
 	}
 
+	/**
+	 * Gives access to the render texture object.
+	 * 
+	 * @return Render texture object handle.
+	 */
 	public int getRenderTexture()
 	{
 		return renderTexture;

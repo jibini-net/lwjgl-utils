@@ -4,11 +4,34 @@ import static org.lwjgl.opengl.GL11.*;
 import java.nio.FloatBuffer;
 import org.lwjgl.BufferUtils;
 
+/**
+ * Utility class for handling textures.
+ */
 public class Texture
 {
+	/**
+	 * Stores texture object handle.
+	 */
 	private int texture;
-	private int width, height;
+	
+	/**
+	 * Stores the width of the texture.
+	 */
+	private int width;
+	
+	/**
+	 * Stores the height of the texture.
+	 */
+	private int height;
 
+	/**
+	 * Creates a texture from given data.
+	 * 
+	 * @param data Array of pixels in order R, G, B, A, ...
+	 * @param width Width of the texture in pixels.
+	 * @param height Height of the texture in pixels.
+	 * @param filter Minification and magnification filter.
+	 */
 	public Texture(float[] data, int width, int height, int filter)
 	{
 		this.width = width;
@@ -26,26 +49,47 @@ public class Texture
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
+	/**
+	 * Binds the texture.
+	 */
 	public void bind()
 	{
 		glBindTexture(GL_TEXTURE_2D, texture);
 	}
 
+	/**
+	 * Destroys the texture.
+	 */
 	public void destroy()
 	{
 		glDeleteTextures(texture);
 	}
 
+	/**
+	 * Decides the width of the texture.
+	 * 
+	 * @return Width of the texture.
+	 */
 	public int getWidth()
 	{
 		return width;
 	}
 
+	/**
+	 * Decides the height of the texture.
+	 * 
+	 * @return Height of the texture.
+	 */
 	public int getHeight()
 	{
 		return height;
 	}
 
+	/**
+	 * Gives access to the texture object.
+	 * 
+	 * @return Texture object handle.
+	 */
 	public int getTexture()
 	{
 		return texture;

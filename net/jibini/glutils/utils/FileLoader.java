@@ -5,8 +5,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+/**
+ * Utility for loading text files.
+ */
 public class FileLoader
 {
+	/**
+	 * Loads the given file into a string.
+	 * 
+	 * @param path Path in JAR to text file.
+	 * @return Contents of given file as a string.
+	 * @throws IOException if a reading error occurs.
+	 */
 	public static String loadFile(String path) throws IOException
 	{
 		InputStream stream = FileLoader.class.getResourceAsStream(path);

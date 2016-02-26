@@ -5,15 +5,56 @@ import java.nio.IntBuffer;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL;
 
+/**
+ * Utility class for handling GLFW displays.
+ */
 public class Display
 {
+	/**
+	 * Stores current title for display.
+	 */
 	private String title = "";
-	private int width = 0, height = 0;
-	private int lastWidth, lastHeight;
+	
+	/**
+	 * Stores current width for display.
+	 */
+	private int width = 0;
+	
+	/**
+	 * Stores current height for display.
+	 */
+	private int height = 0;
+	
+	/**
+	 * Stores width of display from last frame.
+	 */
+	private int lastWidth;
+	
+	/**
+	 * Stores height of display from last frame.
+	 */
+	private int lastHeight;
+	
+	/**
+	 * Stores whether VSync is enabled.
+	 */
 	private boolean vSync = false;
+	
+	/**
+	 * Stores whether display is created.
+	 */
 	private boolean isCreated = false;
+	
+	/**
+	 * Stores GLFW window object handle.
+	 */
 	private long window;
 
+	/**
+	 * Changes the title of the display.
+	 * 
+	 * @param title New title for the display.
+	 */
 	public void setTitle(String title)
 	{
 		this.title = title;
@@ -21,6 +62,12 @@ public class Display
 			glfwSetWindowTitle(window, title);
 	}
 
+	/**
+	 * Changes the size of the display.
+	 * 
+	 * @param width New width for the display.
+	 * @param height New height for the display.
+	 */
 	public void setDimensions(int width, int height)
 	{
 		this.width = width;
@@ -29,6 +76,12 @@ public class Display
 			glfwSetWindowSize(window, width, height);
 	}
 
+
+	/**
+	 * Changes whether VSync is enabled.
+	 * 
+	 * @param vSync Whether VSync should be enabled.
+	 */
 	public void setVSync(boolean vSync)
 	{
 		this.vSync = vSync;
@@ -36,6 +89,10 @@ public class Display
 			glfwSwapInterval(vSync ? 1 : 0);
 	}
 
+
+	/**
+	 * Initializes the GLFW display and GL capabilities.
+	 */
 	public void create()
 	{
 		if (glfwInit() != GLFW_TRUE)
@@ -59,6 +116,11 @@ public class Display
 		isCreated = true;
 	}
 
+
+	/**
+	 * Updates variables from frame to frame and completes
+	 * per-frame operations.
+	 */
 	public void update()
 	{
 		lastWidth = width;
@@ -72,11 +134,19 @@ public class Display
 		glfwPollEvents();
 	}
 
+
+	/**
+	 * Requests that the display should close.
+	 */
 	public void requestClose()
 	{
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 	}
 
+
+	/**
+	 * Destroys the display and GL capabilities.
+	 */
 	public void destroy()
 	{
 		glfwDestroyWindow(window);
@@ -84,32 +154,68 @@ public class Display
 		GL.destroy();
 	}
 
+
+	/**
+	 * Decides whether the display has been resized.
+	 * 
+	 * @return Whether the display has been resized.
+	 */
 	public boolean wasResized()
 	{
 		boolean result = (lastWidth != width) | (lastHeight != height);
 		return result;
 	}
 
+
+	/**
+	 * Decides whether the display should be closed.
+	 * 
+	 * @return Whether the display should be closed.
+	 */
 	public boolean isCloseRequested()
 	{
 		return glfwWindowShouldClose(window) == GLFW_TRUE;
 	}
 
+
+	/**
+	 * Decides whether VSync is enabled.
+	 * 
+	 * @return Whether VSync is enabled.
+	 */
 	public boolean isVSync()
 	{
 		return vSync;
 	}
 
+
+	/**
+	 * Decides the current width of the display.
+	 * 
+	 * @return Current width of the display.
+	 */
 	public int getWidth()
 	{
 		return width;
 	}
 
+
+	/**
+	 * Decides the current height of the display.
+	 * 
+	 * @return Current height of the display.
+	 */
 	public int getHeight()
 	{
 		return height;
 	}
 
+
+	/**
+	 * Gives access to the GLFW window object.
+	 * 
+	 * @return GLFW window object handle.
+	 */
 	public long getWindow()
 	{
 		return window;
