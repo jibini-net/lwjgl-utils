@@ -103,6 +103,8 @@ public class Framebuffer
 		// @formatter:on
 
 		FloatBuffer fboMeshBuffer = BufferUtils.createFloatBuffer(fboMeshData.length);
+		fboMeshBuffer.put(fboMeshData);
+		fboMeshBuffer.flip();
 		fboMesh = new MeshRenderer();
 		fboMesh.createInterleaved(fboMeshBuffer, fboMeshData.length / GLUtils.COORD_ELEMENTS);
 	}
