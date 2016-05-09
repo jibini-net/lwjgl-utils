@@ -3,7 +3,7 @@ Higher level wrappers for LWJGL 3 functionality.
 
 For new programmers or people learning the ways of OpenGL graphics, the confusing method names and pointer handling can be quite difficult.  This is a library with classes that are built for beginners, with features tailored for those who are making the move from LWJGL 2 to LWJGL 3.  Several core features and display handling are now included, and soon to come are other input handlers and possibly new shading resources.
 
-One noticable difference between LWJGL 2 and LWJGL 3 is that the old `Display` and other built-in classes were removed.  It's replacement was the fully functional and capable GLFW library originally written in C.  To replace these missing classes, this library now has it's own that utilize the GLFW library in as efficient of a way as possible.
+One noticable difference between LWJGL 2 and LWJGL 3 is that the old `Display` and other built-in classes were removed.  Its replacement was the fully functional and capable GLFW library originally written in C.  To replace these missing classes, this library now has its own that utilize the GLFW library in as efficient of a way as possible.
 
 ## Dependencies
  - LWJGL 3, available at their [website](https://www.lwjgl.org/).
