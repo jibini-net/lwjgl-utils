@@ -1,5 +1,8 @@
 package net.jibini.glutils;
 
+/**
+ * Contains constants for library operation.
+ */
 public class GLUtils
 {
 	/**
