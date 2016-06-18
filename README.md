@@ -1,5 +1,7 @@
-## LWJGL-Utils
+## LWJGL-Utils - Inactive and Outdated
 Higher level wrappers for LWJGL 3 functionality.
+
+Efforts have been moved towards JGLOOm, see that [organization](https://github.com/team-jgloom).
 
 For new programmers or people learning the ways of OpenGL graphics, the confusing method names and pointer handling can be quite difficult.  This is a library with classes that are built for beginners, with features tailored for those who are making the move from LWJGL 2 to LWJGL 3.  Several core features and display handling are now included, and soon to come are other input handlers and possibly new shading resources.
 
